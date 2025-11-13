@@ -1,7 +1,10 @@
+variant: fcos
+version: 1.6.0
+
 passwd:
   users:
     - name: core
-      password_hash: "$6$Kf42C/nZJ$eJxoNQGlTjM6gA6Ct8XqWr7b6gn7Y7j4bGqv4EVD2tUufXnZXZEKxG5vIt5LJfR3b1Bx/rtdgY8BpxshB6T5q0" #password
+      password_hash: "$6$Kf42C/nZJ$eJxoNQGlTjM6gA6Ct8XqWr7b6gn7Y7j4bGqv4EVD2tUufXnZXZEKxG5vIt5LJfR3b1Bx/rtdgY8BpxshB6T5q0"
       ssh_authorized_keys:
         - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6/pLexwEFqr29COJawkoB"
       groups:
