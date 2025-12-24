@@ -9,7 +9,7 @@ AutoUpdate=registry
 Network=apps
 NetworkAlias=vaultwarden
 
-EnvironmentFile=%h/.config/containers/vaultwarden.env
+EnvironmentFile=./vaultwarden.env
 
 Volume=vaultwarden-data.volume:/data:Z
 
