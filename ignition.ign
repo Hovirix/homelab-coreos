@@ -39,17 +39,6 @@
   "storage": {
     "disks": [
       {
-        "device": "/dev/disk/by-id/nvme-WD_BLACK_SN850X_2000GB_24517E4ABM06",
-        "partitions": [
-          {
-            "label": "luks",
-            "number": 4,
-            "sizeMiB": 0,
-            "typeGuid": "ca7d7ccb-63ed-4c53-861c-1742536059cc"
-          }
-        ]
-      },
-      {
         "device": "/dev/disk/by-id/ata-512GB_SSD_MQ02W52300963",
         "partitions": [
           {
@@ -63,12 +52,9 @@
     ],
     "filesystems": [
       {
-        "device": "/dev/mapper/crypted",
+        "device": "/dev/mapper/root",
         "format": "xfs",
-        "mountOptions": [
-          "noatime"
-        ],
-        "path": "/",
+        "label": "root",
         "wipeFilesystem": true
       },
       {
@@ -89,9 +75,10 @@
         "clevis": {
           "tpm2": true
         },
-        "device": "/dev/disk/by-partlabel/luks",
+        "device": "/dev/disk/by-partlabel/root",
         "discard": true,
-        "name": "crypted",
+        "label": "luks-root",
+        "name": "root",
         "wipeVolume": true
       }
     ]

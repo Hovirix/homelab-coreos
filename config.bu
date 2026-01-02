@@ -3,13 +3,6 @@ version: 1.6.0
 
 storage:
   disks:
-    - device: /dev/disk/by-id/nvme-WD_BLACK_SN850X_2000GB_24517E4ABM06
-      partitions:
-        - label: luks
-          number: 4
-          size_mib: 0
-          type_guid: ca7d7ccb-63ed-4c53-861c-1742536059cc  # Linux LUKS
-
     - device: /dev/disk/by-id/ata-512GB_SSD_MQ02W52300963
       wipe_table: true
       partitions:
@@ -18,20 +11,19 @@ storage:
           size_mib: 0
 
   luks:
-    - name: crypted
-      device: /dev/disk/by-partlabel/luks
-      wipe_volume: true
-      discard: true
+    - name: root
+      label: luks-root
+      device: /dev/disk/by-partlabel/root
       clevis:
         tpm2: true
+      discard: true
+      wipe_volume: true
 
   filesystems:
-    - device: /dev/mapper/crypted
+    - device: /dev/mapper/root
       format: xfs
+      label: root
       wipe_filesystem: true
-      path: /
-      mount_options:
-        - noatime
 
     - device: /dev/disk/by-partlabel/backup
       format: xfs
