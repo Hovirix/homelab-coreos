@@ -7,9 +7,11 @@ After=postgresql.service
 Image=ghcr.io/goauthentik/server:2025.10.3
 Command=server
 
-EnvFile=.env
+EnvFile=./authentik.env
 
+Network=db
 Network=apps
+NetworkAlias=authentik-server
 
 Volume=./media:/media
 Volume=./custom-templates:/templates

@@ -7,9 +7,9 @@ After=postgresql.service
 Image=ghcr.io/goauthentik/server:2025.10.3
 Command=worker
 
-EnvFile=.env
+EnvFile=./authentik.env
 
-Network=apps
+Network=db
 
 Volume=./media:/media
 Volume=./certs:/certs
