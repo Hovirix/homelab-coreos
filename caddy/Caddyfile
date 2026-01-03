@@ -17,5 +17,5 @@
 vault.nemnix.site {
 	encode zstd gzip
 	import security_headers
-	reverse_proxy vaultwarden:8080
+	reverse_proxy vaultwarden:80
 }
