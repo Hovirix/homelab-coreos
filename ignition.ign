@@ -23,29 +23,22 @@
       "net.ipv4.ip_unprivileged_port_start=80"
     ]
   },
-  "storage": {
-    "files": [
+  "passwd": {
+    "users": [
       {
-        "group": {
-          "id": 1000
-        },
-        "path": "/home/core/.ssh/authorized_keys",
-        "user": {
-          "id": 1000
-        },
-        "contents": {
-          "compression": "",
-          "source": "data:,ssh-ed25519%20AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6%2FpLexwEFqr29COJawkoB%0A"
-        },
-        "mode": 384
+        "name": "core",
+        "sshAuthorizedKeys": [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6/pLexwEFqr29COJawkoB"
+        ]
       }
-    ],
+    ]
+  },
+  "storage": {
     "filesystems": [
       {
         "device": "/dev/mapper/root",
         "format": "xfs",
         "label": "root",
-        "path": "/",
         "wipeFilesystem": true
       }
     ],

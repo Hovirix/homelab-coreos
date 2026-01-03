@@ -1,7 +1,12 @@
 variant: fcos
 version: 1.6.0
 
-storage:
+boot_device:
+  luks:
+    tpm2: true
+    discard: true
+
+# storage:
   # disks:
   #   - device: /dev/disk/by-id/ata-512GB_SSD_MQ02W52300963
   #     wipe_table: true
@@ -9,22 +14,6 @@ storage:
   #       - label: backup
   #         number: 1
   #         size_mib: 0
-
-  luks:
-    - name: root
-      label: luks-root
-      device: /dev/disk/by-partlabel/root
-      clevis:
-        tpm2: true
-      discard: true
-      wipe_volume: true
-
-  filesystems:
-    - device: /dev/mapper/root
-      path: /
-      format: xfs
-      label: root
-      wipe_filesystem: true
 
     # - device: /dev/disk/by-partlabel/backup
     #   format: xfs
@@ -36,17 +25,11 @@ storage:
     #     - nodev
     #     - nosuid
 
-  files:
-    - path: /home/core/.ssh/authorized_keys
-      mode: 0600
-      user:
-        id: 1000
-      group:
-        id: 1000
-      contents:
-        inline: |
-          ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6/pLexwEFqr29COJawkoB
-
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6/pLexwEFqr29COJawkoB"
 
 kernel_arguments:
   should_exist:
