@@ -1,6 +1,7 @@
 [Unit]
 Description=Vaultwarden quadlet
-After=network-online.target
+Requires=apps.network vaultwarden-data.volume
+After=apps.network vaultwarden-data.volume
 
 [Container]
 Image=ghcr.io/dani-garcia/vaultwarden:latest

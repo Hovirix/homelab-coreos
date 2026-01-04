@@ -1,7 +1,7 @@
 [Unit]
 Description=Authentik Server
-Requires=postgresql.service
-After=postgresql.service
+Requires=postgres.container db.network apps.network
+After=postgres.container db.network apps.network
 
 [Container]
 Image=ghcr.io/goauthentik/server:2025.10.3

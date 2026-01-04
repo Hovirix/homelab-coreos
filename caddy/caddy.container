@@ -1,5 +1,7 @@
 [Unit]
 Description=Caddy reverse proxy
+Requires=proxy.network apps.network caddy-data.volume caddy-config.volume
+After=proxy.network apps.network caddy-data.volume caddy-config.volume
 
 [Container]
 Image=docker.io/caddybuilds/caddy-cloudflare:alpine

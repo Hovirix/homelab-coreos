@@ -1,5 +1,7 @@
 [Unit]
 Description=PostgreSQL quadlet
+Requires=db.network postgres-data.volume
+After=db.network postgres-data.volume
 
 [Container]
 Image=docker.io/library/postgres:17.7-bookworm
