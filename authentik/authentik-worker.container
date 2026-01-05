@@ -14,6 +14,7 @@ Environment=AUTHENTIK_POSTGRESQL__USER=authentik
 Secret=AUTHENTIK_SECRET_KEY,type=env,target=AUTHENTIK_SECRET_KEY
 Secret=AUTHENTIK_POSTGRESQL__PASSWORD,type=env,target=AUTHENTIK_POSTGRESQL__PASSWORD
 
+Network=db.network
 Network=apps.network
 
 [Service]
