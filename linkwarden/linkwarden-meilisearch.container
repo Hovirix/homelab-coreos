@@ -1,0 +1,20 @@
+[Unit]
+Description=Linkwarden Meilisearch quadlet
+
+[Container]
+Image=docker.io/getmeili/meilisearch:v1.12.8
+AutoUpdate=registry
+
+Secret=MEILI_MASTER_KEY,type=env,target=MEILI_MASTER_KEY
+
+Network=apps.network
+NetworkAlias=linkwarden-meilisearch
+
+Volume=linkwarden-meili-data.volume:/meili_data:Z
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target

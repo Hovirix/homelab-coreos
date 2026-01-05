@@ -53,3 +53,9 @@ vault.nemnix.site {
 	import security_headers
 	reverse_proxy vaultwarden:80
 }
+
+linkwarden.nemnix.site {
+	encode zstd gzip
+	import security_headers
+	reverse_proxy linkwarden:3000
+}
