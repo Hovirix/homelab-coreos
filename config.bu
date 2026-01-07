@@ -6,24 +6,14 @@ boot_device:
     tpm2: true
     discard: true
 
-# storage:
-  # disks:
-  #   - device: /dev/disk/by-id/ata-512GB_SSD_MQ02W52300963
-  #     wipe_table: true
-  #     partitions:
-  #       - label: backup
-  #         number: 1
-  #         size_mib: 0
-
-    # - device: /dev/disk/by-partlabel/backup
-    #   format: xfs
-    #   wipe_filesystem: true
-    #   path: /backup
-    #   mount_options:
-    #     - noatime
-    #     - nofail
-    #     - nodev
-    #     - nosuid
+storage:
+  files:
+    - path: /etc/sysctl.d/99-custom.conf
+      mode: 0644
+      contents:
+        inline: |
+          # Allow unprivileged ports >= 80
+          net.ipv4.ip_unprivileged_port_start = 80
 
 passwd:
   users:
@@ -54,9 +44,3 @@ kernel_arguments:
     # Power saving
     - intel_pstate=active
     - rcutree.enable_rcu_lazy=1
-
-    # Networking
-    - net.ipv4.ip_unprivileged_port_start=80
-
-
-

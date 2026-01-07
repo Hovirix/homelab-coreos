@@ -19,8 +19,7 @@
       "panic=1",
       "boot.panic_on_fail",
       "intel_pstate=active",
-      "rcutree.enable_rcu_lazy=1",
-      "net.ipv4.ip_unprivileged_port_start=80"
+      "rcutree.enable_rcu_lazy=1"
     ]
   },
   "passwd": {
@@ -34,6 +33,16 @@
     ]
   },
   "storage": {
+    "files": [
+      {
+        "path": "/etc/sysctl.d/99-custom.conf",
+        "contents": {
+          "compression": "",
+          "source": "data:,%23%20Allow%20unprivileged%20ports%20%3E%3D%2080%0Anet.ipv4.ip_unprivileged_port_start%20%3D%2080%0A"
+        },
+        "mode": 420
+      }
+    ],
     "filesystems": [
       {
         "device": "/dev/mapper/root",
