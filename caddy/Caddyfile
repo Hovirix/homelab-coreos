@@ -48,6 +48,12 @@ idp.nemnix.site {
 	reverse_proxy authentik-server:9000
 }
 
+n8n.nemnix.site {
+	encode zstd gzip
+	import security_headers
+	reverse_proxy n8n:5678
+}
+  
 vault.nemnix.site {
 	encode zstd gzip
 	import security_headers
@@ -59,3 +65,4 @@ linkwarden.nemnix.site {
 	import security_headers
 	reverse_proxy linkwarden:3000
 }
+

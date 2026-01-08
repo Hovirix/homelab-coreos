@@ -16,6 +16,9 @@ sudo rpm-ostree install "${packages[@]}" --apply-live >/dev/null || true
 # PostgreSQL
 openssl rand -hex 16 | podman secret create --ignore POSTGRES_PASSWORD -
 
+# n8n
+openssl rand -hex 16 | podman secret create --ignore N8N_POSTGRESQL__PASSWORD -
+
 # Authentik
 openssl rand -hex 32 | podman secret create --ignore AUTHENTIK_SECRET_KEY -
 openssl rand -hex 16 | podman secret create --ignore AUTHENTIK_POSTGRESQL__PASSWORD -

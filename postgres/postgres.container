@@ -2,10 +2,11 @@
 Description=PostgreSQL quadlet
 
 [Container]
-Image=docker.io/library/postgres:17.7-bookworm
+Image=docker.io/pgvector/pgvector:pg17-trixie
 AutoUpdate=registry
 
 Secret=POSTGRES_PASSWORD,type=env,target=POSTGRES_PASSWORD
+Secret=N8N_POSTGRESQL__PASSWORD,type=env,target=N8N_POSTGRESQL__PASSWORD
 Secret=AUTHENTIK_POSTGRESQL__PASSWORD,type=env,target=AUTHENTIK_POSTGRESQL__PASSWORD
 Secret=LINKWARDEN_POSTGRESQL__PASSWORD,type=env,target=LINKWARDEN_POSTGRESQL__PASSWORD
 
