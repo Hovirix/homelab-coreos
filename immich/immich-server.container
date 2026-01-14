@@ -1,7 +1,7 @@
 [Unit]
 Description=Immich Server
-Requires=valkey.container postgres.container
-After=valkey.container postgres.container
+Requires=valkey.container postgres.container immich-machine-learning.container
+After=valkey.container postgres.container immich-machine-learning.container
 
 [Container]
 Image=ghcr.io/immich-app/immich-server:v2

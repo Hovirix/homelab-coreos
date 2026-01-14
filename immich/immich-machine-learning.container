@@ -1,7 +1,5 @@
 [Unit]
 Description=Immich Machine Learning
-After=immich-server.container
-Requires=immich-server.container
 
 [Container]
 Image=ghcr.io/immich-app/immich-machine-learning:v2
