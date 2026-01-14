@@ -53,11 +53,17 @@ n8n.nemnix.site {
 	import security_headers
 	reverse_proxy n8n:5678
 }
-  
+
 vault.nemnix.site {
 	encode zstd gzip
 	import security_headers
 	reverse_proxy vaultwarden:80
+}
+
+immich.nemnix.site {
+	encode zstd gzip
+	import security_headers
+	reverse_proxy immich-server:2283
 }
 
 linkwarden.nemnix.site {

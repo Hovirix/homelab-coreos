@@ -1,4 +1,4 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -42,3 +42,6 @@ printf 'postgresql://linkwarden:%s@postgres:5432/linkwarden' "$DB_PASSWORD" |
   podman secret create --ignore LINKWARDEN_DATABASE_URL -
 
 unset DB_PASSWORD
+
+# Immich
+openssl rand -hex 16 | podman secret create --ignore IMMICH_POSTGRESQL__PASSWORD -

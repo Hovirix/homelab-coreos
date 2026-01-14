@@ -1,0 +1,29 @@
+[Unit]
+Description=Immich Server
+Requires=valkey.container postgres.container
+After=valkey.container postgres.container
+
+[Container]
+Image=ghcr.io/immich-app/immich-server:v2
+AutoUpdate=registry
+
+Environment=DB_HOSTNAME=postgres
+Environment=DB_USERNAME=immich
+Environment=DB_DATABASE_NAME=immich
+Environment=DB_VECTOR_EXTENSION=pgvector
+Environment=REDIS_HOSTNAME=valkey
+
+Secret=IMMICH_POSTGRESQL__PASSWORD,type=env,target=DB_PASSWORD
+
+Network=db.network
+Network=apps.network
+NetworkAlias=immich-server
+
+Volume=immich-library.volume:/data
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target

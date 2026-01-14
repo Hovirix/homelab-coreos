@@ -1,0 +1,21 @@
+[Unit]
+Description=Immich Machine Learning
+After=immich-server.container
+Requires=immich-server.container
+
+[Container]
+Image=ghcr.io/immich-app/immich-machine-learning:v2
+AutoUpdate=registry
+
+Network=db.network
+Network=apps.network
+NetworkAlias=immich-machine-learning
+
+Volume=immich-model-cache.volume:/cache
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target
