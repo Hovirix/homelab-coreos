@@ -1,0 +1,33 @@
+[Unit]
+Description=Paperless-ngx
+Requires=valkey.container postgres.container
+After=valkey.container postgres.container
+
+[Container]
+Image=ghcr.io/paperless-ngx/paperless-ngx:latest
+AutoUpdate=registry
+
+Environment=PAPERLESS_REDIS=redis://valkey:6379
+Environment=PAPERLESS_DBHOST=postgres
+Environment=PAPERLESS_DBNAME=paperless
+Environment=PAPERLESS_DBUSER=paperless
+Environment=PAPERLESS_URL=https://paperless.nemnix.site
+
+Secret=PAPERLESS_POSTGRESQL__PASSWORD,type=env,target=PAPERLESS_DBPASS
+Secret=PAPERLESS_SECRET_KEY,type=env,target=PAPERLESS_SECRET_KEY
+
+Network=db.network
+Network=apps.network
+NetworkAlias=paperless
+
+Volume=paperless-data.volume:/usr/src/paperless/data:Z
+Volume=paperless-media.volume:/usr/src/paperless/media:Z
+Volume=paperless-export.volume:/usr/src/paperless/export:Z
+Volume=paperless-consume.volume:/usr/src/paperless/consume:Z
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target

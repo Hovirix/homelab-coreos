@@ -66,6 +66,12 @@ immich.nemnix.site {
 	reverse_proxy immich-server:2283
 }
 
+paperless.nemnix.site {
+	encode zstd gzip
+	import security_headers
+	reverse_proxy paperless:8000
+}
+
 linkwarden.nemnix.site {
 	encode zstd gzip
 	import security_headers
