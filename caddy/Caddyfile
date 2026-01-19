@@ -23,19 +23,7 @@
 		forward_auth http://authentik-server:9000 {
 			uri /outpost.goauthentik.io/auth/caddy
 
-			copy_headers
-			X-Authentik-Username
-			X-Authentik-Groups
-			X-Authentik-Entitlements
-			X-Authentik-Email
-			X-Authentik-Name
-			X-Authentik-Uid
-			X-Authentik-Jwt
-			X-Authentik-Meta-Jwks
-			X-Authentik-Meta-Outpost
-			X-Authentik-Meta-Provider
-			X-Authentik-Meta-App
-			X-Authentik-Meta-Version
+			copy_headers X-Authentik-Username X-Authentik-Groups X-Authentik-Entitlements X-Authentik-Email X-Authentik-Name X-Authentik-Uid X-Authentik-Jwt X-Authentik-Meta-Jwks X-Authentik-Meta-Outpost X-Authentik-Meta-Provider X-Authentik-Meta-App X-Authentik-Meta-Version
 
 			trusted_proxies private_ranges
 		}
@@ -63,7 +51,16 @@ vault.nemnix.site {
 immich.nemnix.site {
 	encode zstd gzip
 	import security_headers
-	reverse_proxy immich-server:2283
+	route {
+		import authentik
+		reverse_proxy immich-server:2283
+	}
+}
+
+grafana.nemnix.site {
+	encode zstd gzip
+	import security_headers
+	reverse_proxy grafana:3000
 }
 
 paperless.nemnix.site {
@@ -77,4 +74,5 @@ linkwarden.nemnix.site {
 	import security_headers
 	reverse_proxy linkwarden:3000
 }
+
 
