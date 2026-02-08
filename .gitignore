@@ -6,8 +6,6 @@
 *.env
 
 # Token / secret files
-secrets/
-**/*secret*
 **/*token*
 **/*key*
 **/*.pem

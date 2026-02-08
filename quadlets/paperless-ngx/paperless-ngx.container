@@ -13,8 +13,17 @@ Environment=PAPERLESS_DBNAME=paperless
 Environment=PAPERLESS_DBUSER=paperless
 Environment=PAPERLESS_URL=https://paperless.nemnix.site
 
+Environment=PAPERLESS_ENABLE_ALLAUTH=true
+Environment=PAPERLESS_APPS=allauth.socialaccount.providers.openid_connect
+Environment=PAPERLESS_AUTO_LOGIN=true
+Environment=PAPERLESS_AUTO_CREATE=true
+Environment=PAPERLESS_SOCIAL_ACCOUNT_SYNC_GROUPS=true
+
 Secret=PAPERLESS_POSTGRESQL__PASSWORD,type=env,target=PAPERLESS_DBPASS
 Secret=PAPERLESS_SECRET_KEY,type=env,target=PAPERLESS_SECRET_KEY
+
+Secret=PAPERLESS_SOCIALACCOUNT_PROVIDERS,type=env,target=PAPERLESS_SOCIALACCOUNT_PROVIDERS
+Secret=PAPERLESS_LOGOUT_REDIRECT_URL,type=env,target=PAPERLESS_LOGOUT_REDIRECT_URL
 
 Network=db.network
 Network=apps.network

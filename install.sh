@@ -60,6 +60,23 @@ openssl rand -hex 16 | podman secret create --ignore IMMICH_POSTGRESQL__PASSWORD
 openssl rand -hex 32 | podman secret create --ignore PAPERLESS_SECRET_KEY -
 openssl rand -hex 16 | podman secret create --ignore PAPERLESS_POSTGRESQL__PASSWORD -
 
+# SSO
+read -r -s -p "Enter Authentik OIDC client ID: " CLIENT_ID
+echo
+read -r -s -p "Enter Authentik OIDC client secret: " CLIENT_SECRET
+echo
+read -r -p "Enter Authentik application slug: " APPLICATION_SLUG
+
+printf '%s' \
+  '{"openid_connect":{"APPS":[{"provider_id":"authentik","name":"authentik","client_id":"'"$CLIENT_ID"'","secret":"'"$CLIENT_SECRET"'","settings":{"server_url":"https://authentik.company/application/o/'"$APPLICATION_SLUG"'/.well-known/openid-configuration","claims":{"username":"email"}}}],"OAUTH_PKCE_ENABLED":"True"}}' |
+  podman secret create --ignore PAPERLESS_SOCIALACCOUNT_PROVIDERS -
+
+printf '%s' \
+  "https://authentik.company/application/o/$APPLICATION_SLUG/end-session/" |
+  podman secret create --ignore PAPERLESS_LOGOUT_REDIRECT_URL -
+
+unset CLIENT_ID CLIENT_SECRET APPLICATION_SLUG
+
 # ==================================================
 # Grafana
 # ==================================================
