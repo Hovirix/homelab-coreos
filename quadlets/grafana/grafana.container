@@ -4,7 +4,7 @@ Requires=postgres.container
 After=postgres.container
 
 [Container]
-Image=docker.io/grafana/grafana
+Image=docker.io/grafana/grafana-oss
 AutoUpdate=registry
 
 Network=apps.network
@@ -17,7 +17,19 @@ Environment=GF_DATABASE_HOST=postgres:5432
 Environment=GF_DATABASE_NAME=grafana
 Environment=GF_DATABASE_USER=grafana
 
+Environment=GF_AUTH_GENERIC_OAUTH_ENABLED=true
+Environment=GF_AUTH_GENERIC_OAUTH_NAME=authentik
+Environment=GF_AUTH_GENERIC_OAUTH_SCOPES=openid profile email
+Environment=GF_AUTH_GENERIC_OAUTH_AUTH_URL=https://idp.nemnix.site/application/o/authorize/
+Environment=GF_AUTH_GENERIC_OAUTH_TOKEN_URL=https://idp.nemnix.site/application/o/token/
+Environment=GF_AUTH_GENERIC_OAUTH_API_URL=https://idp.nemnix.site/application/o/userinfo/
+Environment=GF_AUTH_SIGNOUT_REDIRECT_URL=https://idp.nemnix.site/application/o/grafana/end-session/
+Environment=GF_AUTH_OAUTH_AUTO_LOGIN=true
+Environment=GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH=contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
+
 Secret=GRAFANA_POSTGRESQL__PASSWORD,type=env,target=GF_DATABASE_PASSWORD
+Secret=GRAFANA_OAUTH_CLIENT_ID,type=env,target=GF_AUTH_GENERIC_OAUTH_CLIENT_ID
+Secret=GRAFANA_OAUTH_CLIENT_SECRET,type=env,target=GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
 
 Volume=grafana-storage.volume:/var/lib/grafana:Z
 
