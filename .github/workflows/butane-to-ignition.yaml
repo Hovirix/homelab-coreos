@@ -1,0 +1,31 @@
+name: Butane -> Ignition
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "butane.yaml"
+
+jobs:
+  run_butane:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Render Ignition with Butane
+        uses: docker://quay.io/coreos/butane:release
+        with:
+          args: --strict --pretty butane.yml --output ignition.json
+
+      - name: Commit ignition.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ignition.json
+          git commit -m "chore: update generated ignition.json" || echo "No changes to commit"
+          git push
