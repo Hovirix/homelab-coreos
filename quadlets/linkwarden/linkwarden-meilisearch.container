@@ -2,7 +2,7 @@
 Description=Linkwarden Meilisearch quadlet
 
 [Container]
-Image=docker.io/getmeili/meilisearch:v1.12.8
+Image=docker.io/getmeili/meilisearch:v1.35.0
 AutoUpdate=registry
 
 Secret=MEILI_MASTER_KEY,type=env,target=MEILI_MASTER_KEY
