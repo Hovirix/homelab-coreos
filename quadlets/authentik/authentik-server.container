@@ -2,7 +2,7 @@
 Description=Authentik Server
 
 [Container]
-Image=ghcr.io/goauthentik/server:2025.10.3
+Image=ghcr.io/goauthentik/server:2025.12.4
 Exec=server
 
 Environment=AUTHENTIK_POSTGRESQL__HOST=postgres

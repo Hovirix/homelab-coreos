@@ -4,7 +4,7 @@ Requires=authentik-server.container
 After=authentik-server.container
 
 [Container]
-Image=ghcr.io/goauthentik/server:2025.10.3
+Image=ghcr.io/goauthentik/server:2025.12.4
 Exec=worker
 
 Environment=AUTHENTIK_POSTGRESQL__HOST=postgres
