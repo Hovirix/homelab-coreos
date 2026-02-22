@@ -2,8 +2,7 @@
 Description=PostgreSQL quadlet
 
 [Container]
-Image=docker.io/pgvector/pgvector:pg17-trixie
-AutoUpdate=registry
+Image=docker.io/pgvector/pgvector@sha256:137f044b0efe3d57f39b972b9b53641b1f2045b99d879e298bbf514a25787dcf
 
 Secret=POSTGRES_PASSWORD,type=env,target=POSTGRES_PASSWORD
 Secret=N8N_POSTGRESQL__PASSWORD,type=env,target=N8N_POSTGRESQL__PASSWORD

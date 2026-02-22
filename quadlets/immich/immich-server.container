@@ -4,8 +4,7 @@ Requires=valkey.container postgres.container immich-machine-learning.container
 After=valkey.container postgres.container immich-machine-learning.container
 
 [Container]
-Image=ghcr.io/immich-app/immich-server:v2
-AutoUpdate=registry
+Image=ghcr.io/immich-app/immich-server@sha256:8b14246ee4c53e39191a54279f8c72f3eed3c026c5b23d0f7e4ab5e69e3aac4a
 
 Environment=DB_HOSTNAME=postgres
 Environment=DB_USERNAME=immich

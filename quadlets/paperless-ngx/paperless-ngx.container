@@ -4,8 +4,7 @@ Requires=valkey.container postgres.container
 After=valkey.container postgres.container
 
 [Container]
-Image=ghcr.io/paperless-ngx/paperless-ngx:latest
-AutoUpdate=registry
+Image=ghcr.io/paperless-ngx/paperless-ngx@sha256:7b937cb2fa2885ab0ecfceb8c7e8827e2312472d9d897a270097ba7f5522dcdc
 
 Environment=PAPERLESS_REDIS=redis://valkey:6379
 Environment=PAPERLESS_DBHOST=postgres

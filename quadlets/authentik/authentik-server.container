@@ -2,7 +2,7 @@
 Description=Authentik Server
 
 [Container]
-Image=ghcr.io/goauthentik/server:2025.10.3
+Image=ghcr.io/goauthentik/server@sha256:c2f132826e5b33629800cdd045a33ed9d80599538aaa49ad290397399539be9d
 Exec=server
 
 Environment=AUTHENTIK_POSTGRESQL__HOST=postgres
@@ -19,6 +19,12 @@ NetworkAlias=authentik-server
 [Service]
 Restart=always
 TimeoutStartSec=300
+
+HealthCmd=curl -f http://localhost:9000/-/health/live/
+HealthInterval=30s
+HealthTimeout=10s
+HealthRetries=3
+HealthStartPeriod=60s
 
 [Install]
 WantedBy=default.target

@@ -4,7 +4,7 @@ Requires=authentik-server.container
 After=authentik-server.container
 
 [Container]
-Image=ghcr.io/goauthentik/server:2025.10.3
+Image=ghcr.io/goauthentik/server@sha256:c2f132826e5b33629800cdd045a33ed9d80599538aaa49ad290397399539be9d
 Exec=worker
 
 Environment=AUTHENTIK_POSTGRESQL__HOST=postgres
@@ -20,6 +20,12 @@ Network=apps.network
 [Service]
 Restart=always
 TimeoutStartSec=300
+
+HealthCmd=ak healthcheck
+HealthInterval=30s
+HealthTimeout=10s
+HealthRetries=3
+HealthStartPeriod=60s
 
 [Install]
 WantedBy=default.target

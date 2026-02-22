@@ -46,6 +46,11 @@ grafana.nemnix.site {
 paperless.nemnix.site {
 	encode zstd gzip
 	import security_headers
+
+	handle_path /admin* {
+	    respond 403 # Block Django admin
+	}
+
 	reverse_proxy paperless:8000
 }
 

@@ -2,8 +2,7 @@
 Description=Valkey
 
 [Container]
-AutoUpdate=registry
-Image=docker.io/valkey/valkey:latest
+Image=docker.io/valkey/valkey@sha256:138afc759e46b92d99b9eae76e1bc1203bb5dcac8579473a30102f38fd2c12fb
 Exec=valkey-server --supervised systemd
 
 Network=db.network

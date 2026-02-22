@@ -4,8 +4,7 @@ Requires=postgres.container
 After=postgres.container
 
 [Container]
-Image=docker.io/grafana/grafana-oss
-AutoUpdate=registry
+Image=docker.io/grafana/grafana-oss@sha256:62a54c76afbeea0b8523b7afcd9e7ee1f0e39806035fd90ffc333a19e9358f2f
 
 Network=apps.network
 Network=db.network

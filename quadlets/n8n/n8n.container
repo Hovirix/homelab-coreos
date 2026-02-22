@@ -4,8 +4,7 @@ Requires=postgres.container
 After=postgres.container
 
 [Container]
-Image=docker.n8n.io/n8nio/n8n
-AutoUpdate=registry
+Image=docker.n8n.io/n8nio/n8n@sha256:53004142b0e93de1e9e31943e601ed9bd4b24ca82a307864ccadf1820b627e5e
 
 Environment=GENERIC_TIMEZONE=UTC
 Environment=TZ=UTC

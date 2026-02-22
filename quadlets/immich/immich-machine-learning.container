@@ -2,8 +2,7 @@
 Description=Immich Machine Learning
 
 [Container]
-Image=ghcr.io/immich-app/immich-machine-learning:v2
-AutoUpdate=registry
+Image=ghcr.io/immich-app/immich-machine-learning@sha256:b213fa3c82d27a21a299c46ffbb38a091f18384db1ad67d409a3b34fe0fce556
 
 Network=db.network
 Network=apps.network
